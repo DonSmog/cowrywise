@@ -5,10 +5,16 @@ interface SearchProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   value: string;
+  page: number;
 }
 
-export const SearchArea: FC<SearchProps> = ({ search, setSearch, value }) => {
-  const { isLoading } = useFetchImages(value);
+export const SearchArea: FC<SearchProps> = ({
+  search,
+  setSearch,
+  value,
+  page,
+}) => {
+  const { isLoading } = useFetchImages(value, page);
 
   return (
     <form className="flex items-start justify-center pt-20 w-full bg-gray-300 h-50 md:px-0 px-5">

@@ -1,15 +1,19 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useFetchImages } from "../hooks/api";
 import { IndividualCard } from "./card";
 import { Loading } from "./loading";
 
 interface GridDisplayProps {
   search: string;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const GridDisplay: FC<GridDisplayProps> = ({ search }) => {
-  const [page, setPage] = useState(1);
-
+export const GridDisplay: FC<GridDisplayProps> = ({
+  search,
+  page,
+  setPage,
+}) => {
   const { data, isLoading } = useFetchImages(search, page);
   const totalPages = data?.total_pages ?? 0;
 
