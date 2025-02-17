@@ -2,18 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 
 const key = import.meta.env.VITE_APP_API_KEY;
 
-export const useFetchImages = (query: string) => {
+export const useFetchImages = (query: string, page: number) => {
   const url = `https://api.unsplash.com/search/photos?query=${
     query || "African"
-  }&page=1&per_page=11&client_id=${key}`;
+  }&page=${page}&per_page=11&client_id=${key}`;
 
   const fetchImages = async () => {
     const res = await fetch(url);
     return res.json();
   };
 
-  const { data, isLoading } = useQuery<{ results: Response[] }>({
-    queryKey: [query || "African"],
+  const { data, isLoading } = useQuery<{
+    results: Response[];
+    total_pages: number;
+  }>({
+    queryKey: [query || "African", page],
     queryFn: fetchImages,
   });
 
