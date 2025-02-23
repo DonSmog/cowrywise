@@ -68,8 +68,8 @@ const ViewModal: FC<ModalProps> = ({ open, onClose, data }) => {
           border: "none",
           borderRadius: "12px",
           width: baseScreen ? "65vw" : "95vw",
-          height: "100%",
-          maxHeight: "95vh",
+          height: "fit-content",
+          maxHeight: "fit-content",
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
@@ -101,7 +101,7 @@ const ViewModal: FC<ModalProps> = ({ open, onClose, data }) => {
           <img
             src={data?.url}
             alt={data?.alt}
-            className="w-full object-cover min-h-[80vh]"
+            className="w-full object-cover h-[80vh] object-center"
           />
 
           {(data?.name || data?.location) && (
